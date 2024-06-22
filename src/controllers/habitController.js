@@ -1,4 +1,4 @@
-const Habit = require('../models/Habit');  // Importujemy model
+const { Habit } = require('../models/index');  // Importujemy model
 
 exports.getHabits = async (req, res) => {
   try {

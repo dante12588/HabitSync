@@ -16,6 +16,18 @@ app.use(morgan('dev'));
 // Importowanie tras
 const habitRoutes = require('./routes/habits');
 app.use('/api/habits', habitRoutes);
+const userRoutes = require('./routes/users');
+app.use('/api/users', userRoutes);
+
+// Synchronizacja modeli z bazą danych
+sequelize.sync({ force: true })  // force: true usuwa i tworzy ponownie tabele za każdym razem
+  .then(() => {
+    console.log('Database & tables created!');
+  })
+  .catch(error => {
+    console.error('Error creating database tables:', error);
+  });
+
 
 //Test połączenia z bazą danych
 sequelize.authenticate()
